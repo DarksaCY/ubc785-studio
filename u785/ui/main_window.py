@@ -263,7 +263,9 @@ class MainWindow(QMainWindow):
         self.light_box = self._choice(row, _("BACKLIGHT"), [(_("On"), "N"), (_("Dim"), "D"), (_("Off"), "F")], "LT")
         fl.addLayout(row)
         row = QHBoxLayout()
-        self.mute_box = self._choice(row, _("AUDIO"), [(_("Auto"), "A"), (_("Open"), "N"), (_("Mute"), "F")], "MU")
+        # MU is a *mute* switch: MUN = mute on (silent), MUF = mute off (audio open).
+        # The protocol doc describes the replies the other way round; the radio confirms this mapping.
+        self.mute_box = self._choice(row, _("AUDIO"), [(_("Auto"), "A"), (_("Open"), "F"), (_("Mute"), "N")], "MU")
         fl.addLayout(row)
         lay.addWidget(funcs)
         lay.addStretch()
